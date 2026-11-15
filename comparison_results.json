@@ -1,0 +1,490 @@
+{
+  "binaries": {
+    "vlc": {
+      "ground_truth": 15,
+      "tools": {
+        "wunstrip": {
+          "tp": 9,
+          "fp": 0,
+          "fn": 6,
+          "precision": 1.0,
+          "recall": 0.6,
+          "f1": 0.7499999999999999,
+          "recovered": 9,
+          "ground_truth": 15
+        },
+        "ghidra": {
+          "tp": 14,
+          "fp": 0,
+          "fn": 1,
+          "precision": 1.0,
+          "recall": 0.9333333333333333,
+          "f1": 0.9655172413793104,
+          "recovered": 14,
+          "ground_truth": 15
+        },
+        "r2": {
+          "tp": 8,
+          "fp": 1,
+          "fn": 7,
+          "precision": 0.8888888888888888,
+          "recall": 0.5333333333333333,
+          "f1": 0.6666666666666667,
+          "recovered": 9,
+          "ground_truth": 15
+        },
+        "angr": {
+          "tp": 14,
+          "fp": 14,
+          "fn": 1,
+          "precision": 0.5,
+          "recall": 0.9333333333333333,
+          "f1": 0.6511627906976745,
+          "recovered": 28,
+          "ground_truth": 15
+        }
+      }
+    },
+    "smbd": {
+      "ground_truth": 48,
+      "tools": {
+        "wunstrip": {
+          "tp": 42,
+          "fp": 0,
+          "fn": 6,
+          "precision": 1.0,
+          "recall": 0.875,
+          "f1": 0.9333333333333333,
+          "recovered": 42,
+          "ground_truth": 48
+        },
+        "ghidra": {
+          "tp": 46,
+          "fp": 0,
+          "fn": 2,
+          "precision": 1.0,
+          "recall": 0.9583333333333334,
+          "f1": 0.9787234042553191,
+          "recovered": 46,
+          "ground_truth": 48
+        },
+        "r2": {
+          "tp": 16,
+          "fp": 1,
+          "fn": 32,
+          "precision": 0.9411764705882353,
+          "recall": 0.3333333333333333,
+          "f1": 0.49230769230769234,
+          "recovered": 17,
+          "ground_truth": 48
+        },
+        "angr": {
+          "tp": 47,
+          "fp": 125,
+          "fn": 1,
+          "precision": 0.27325581395348836,
+          "recall": 0.9791666666666666,
+          "f1": 0.4272727272727273,
+          "recovered": 172,
+          "ground_truth": 48
+        }
+      }
+    },
+    "ls": {
+      "ground_truth": 191,
+      "tools": {
+        "wunstrip": {
+          "tp": 185,
+          "fp": 0,
+          "fn": 6,
+          "precision": 1.0,
+          "recall": 0.9685863874345549,
+          "f1": 0.9840425531914894,
+          "recovered": 185,
+          "ground_truth": 191
+        },
+        "ghidra": {
+          "tp": 188,
+          "fp": 0,
+          "fn": 3,
+          "precision": 1.0,
+          "recall": 0.9842931937172775,
+          "f1": 0.9920844327176782,
+          "recovered": 188,
+          "ground_truth": 191
+        },
+        "r2": {
+          "tp": 94,
+          "fp": 4,
+          "fn": 97,
+          "precision": 0.9591836734693877,
+          "recall": 0.49214659685863876,
+          "f1": 0.6505190311418686,
+          "recovered": 98,
+          "ground_truth": 191
+        },
+        "angr": {
+          "tp": 186,
+          "fp": 685,
+          "fn": 5,
+          "precision": 0.21354764638346727,
+          "recall": 0.9738219895287958,
+          "f1": 0.35028248587570615,
+          "recovered": 871,
+          "ground_truth": 191
+        }
+      }
+    },
+    "liblzma.so.5": {
+      "ground_truth": 328,
+      "tools": {
+        "wunstrip": {
+          "tp": 322,
+          "fp": 0,
+          "fn": 6,
+          "precision": 1.0,
+          "recall": 0.9817073170731707,
+          "f1": 0.9907692307692307,
+          "recovered": 322,
+          "ground_truth": 328
+        },
+        "ghidra": {
+          "tp": 327,
+          "fp": 7,
+          "fn": 1,
+          "precision": 0.9790419161676647,
+          "recall": 0.9969512195121951,
+          "f1": 0.9879154078549849,
+          "recovered": 334,
+          "ground_truth": 328
+        },
+        "r2": {
+          "tp": 182,
+          "fp": 2,
+          "fn": 146,
+          "precision": 0.9891304347826086,
+          "recall": 0.5548780487804879,
+          "f1": 0.7109375000000001,
+          "recovered": 184,
+          "ground_truth": 328
+        },
+        "angr": {
+          "tp": 318,
+          "fp": 1103,
+          "fn": 10,
+          "precision": 0.22378606615059818,
+          "recall": 0.9695121951219512,
+          "f1": 0.3636363636363637,
+          "recovered": 1421,
+          "ground_truth": 328
+        }
+      }
+    },
+    "libjpeg.so.9.5.0": {
+      "ground_truth": 369,
+      "tools": {
+        "wunstrip": {
+          "tp": 363,
+          "fp": 0,
+          "fn": 6,
+          "precision": 1.0,
+          "recall": 0.983739837398374,
+          "f1": 0.9918032786885246,
+          "recovered": 363,
+          "ground_truth": 369
+        },
+        "ghidra": {
+          "tp": 364,
+          "fp": 0,
+          "fn": 5,
+          "precision": 1.0,
+          "recall": 0.986449864498645,
+          "f1": 0.9931787175989086,
+          "recovered": 364,
+          "ground_truth": 369
+        },
+        "r2": {
+          "tp": 207,
+          "fp": 55,
+          "fn": 162,
+          "precision": 0.7900763358778626,
+          "recall": 0.5609756097560976,
+          "f1": 0.6561014263074486,
+          "recovered": 262,
+          "ground_truth": 369
+        },
+        "angr": {
+          "tp": 367,
+          "fp": 1006,
+          "fn": 2,
+          "precision": 0.2672978878368536,
+          "recall": 0.994579945799458,
+          "f1": 0.4213547646383467,
+          "recovered": 1373,
+          "ground_truth": 369
+        }
+      }
+    },
+    "sshd": {
+      "ground_truth": 834,
+      "tools": {
+        "wunstrip": {
+          "tp": 828,
+          "fp": 0,
+          "fn": 6,
+          "precision": 1.0,
+          "recall": 0.9928057553956835,
+          "f1": 0.996389891696751,
+          "recovered": 828,
+          "ground_truth": 834
+        },
+        "ghidra": {
+          "tp": 832,
+          "fp": 4,
+          "fn": 2,
+          "precision": 0.9952153110047847,
+          "recall": 0.9976019184652278,
+          "f1": 0.9964071856287425,
+          "recovered": 836,
+          "ground_truth": 834
+        },
+        "r2": {
+          "tp": 608,
+          "fp": 5,
+          "fn": 226,
+          "precision": 0.9918433931484503,
+          "recall": 0.7290167865707434,
+          "f1": 0.8403593642017968,
+          "recovered": 613,
+          "ground_truth": 834
+        },
+        "angr": {
+          "tp": 828,
+          "fp": 3031,
+          "fn": 6,
+          "precision": 0.21456335838300078,
+          "recall": 0.9928057553956835,
+          "f1": 0.3528659705945025,
+          "recovered": 3859,
+          "ground_truth": 834
+        }
+      }
+    },
+    "nginx": {
+      "ground_truth": 1663,
+      "tools": {
+        "wunstrip": {
+          "tp": 1657,
+          "fp": 0,
+          "fn": 6,
+          "precision": 1.0,
+          "recall": 0.9963920625375827,
+          "f1": 0.9981927710843373,
+          "recovered": 1657,
+          "ground_truth": 1663
+        },
+        "ghidra": {
+          "tp": 1653,
+          "fp": 1,
+          "fn": 10,
+          "precision": 0.9993954050785974,
+          "recall": 0.9939867708959711,
+          "f1": 0.9966837503768465,
+          "recovered": 1654,
+          "ground_truth": 1663
+        },
+        "r2": {
+          "tp": 804,
+          "fp": 3,
+          "fn": 859,
+          "precision": 0.9962825278810409,
+          "recall": 0.4834636199639206,
+          "f1": 0.6510121457489878,
+          "recovered": 807,
+          "ground_truth": 1663
+        },
+        "angr": {
+          "tp": 1650,
+          "fp": 7078,
+          "fn": 13,
+          "precision": 0.1890467461044913,
+          "recall": 0.9921828021647625,
+          "f1": 0.3175825233375036,
+          "recovered": 8728,
+          "ground_truth": 1663
+        }
+      }
+    },
+    "proftpd": {
+      "ground_truth": 2001,
+      "tools": {
+        "wunstrip": {
+          "tp": 1995,
+          "fp": 0,
+          "fn": 6,
+          "precision": 1.0,
+          "recall": 0.9970014992503748,
+          "f1": 0.9984984984984985,
+          "recovered": 1995,
+          "ground_truth": 2001
+        },
+        "ghidra": {
+          "tp": 1957,
+          "fp": 1,
+          "fn": 44,
+          "precision": 0.9994892747701737,
+          "recall": 0.9780109945027486,
+          "f1": 0.9886334933063906,
+          "recovered": 1958,
+          "ground_truth": 2001
+        },
+        "r2": {
+          "tp": 1422,
+          "fp": 5,
+          "fn": 579,
+          "precision": 0.9964961457603364,
+          "recall": 0.7106446776611695,
+          "f1": 0.8296382730455075,
+          "recovered": 1427,
+          "ground_truth": 2001
+        },
+        "angr": {
+          "tp": 1979,
+          "fp": 7078,
+          "fn": 22,
+          "precision": 0.21850502373854477,
+          "recall": 0.9890054972513743,
+          "f1": 0.3579309097485983,
+          "recovered": 9057,
+          "ground_truth": 2001
+        }
+      }
+    },
+    "postgres": {
+      "ground_truth": 18324,
+      "tools": {
+        "wunstrip": {
+          "tp": 18318,
+          "fp": 2,
+          "fn": 6,
+          "precision": 0.9998908296943232,
+          "recall": 0.9996725605762934,
+          "f1": 0.9997816832223557,
+          "recovered": 18320,
+          "ground_truth": 18324
+        },
+        "ghidra": {
+          "tp": 18091,
+          "fp": 1384,
+          "fn": 233,
+          "precision": 0.9289345314505777,
+          "recall": 0.9872844357127265,
+          "f1": 0.9572210905050398,
+          "recovered": 19475,
+          "ground_truth": 18324
+        },
+        "r2": {
+          "tp": 13050,
+          "fp": 56,
+          "fn": 5274,
+          "precision": 0.995727147871204,
+          "recall": 0.712180746561886,
+          "f1": 0.8304167992363984,
+          "recovered": 13106,
+          "ground_truth": 18324
+        },
+        "angr": {
+          "tp": 14584,
+          "fp": 44339,
+          "fn": 3740,
+          "precision": 0.2475094615006025,
+          "recall": 0.7958960925562104,
+          "f1": 0.37759395186868105,
+          "recovered": 58923,
+          "ground_truth": 18324
+        }
+      }
+    },
+    "mysqld": {
+      "ground_truth": 61879,
+      "tools": {
+        "wunstrip": {
+          "tp": 61873,
+          "fp": 0,
+          "fn": 6,
+          "precision": 1.0,
+          "recall": 0.9999030365713731,
+          "f1": 0.9999515159350959,
+          "recovered": 61873,
+          "ground_truth": 61879
+        },
+        "ghidra": {
+          "tp": 61724,
+          "fp": 9665,
+          "fn": 155,
+          "precision": 0.8646149967081763,
+          "recall": 0.9974951114271401,
+          "f1": 0.9263138938079658,
+          "recovered": 71389,
+          "ground_truth": 61879
+        },
+        "r2": {
+          "tp": 37031,
+          "fp": 48,
+          "fn": 24848,
+          "precision": 0.9987054667062218,
+          "recall": 0.5984421209133955,
+          "f1": 0.7484185209887023,
+          "recovered": 37079,
+          "ground_truth": 61879
+        },
+        "angr": {
+          "tp": 56892,
+          "fp": 193180,
+          "fn": 4987,
+          "precision": 0.22750247928596565,
+          "recall": 0.9194072302396613,
+          "f1": 0.3647495920833721,
+          "recovered": 250072,
+          "ground_truth": 61879
+        }
+      }
+    }
+  },
+  "aggregate": {
+    "wunstrip": {
+      "tp": 85592,
+      "fp": 2,
+      "fn": 60,
+      "precision": 0.999977,
+      "recall": 0.999299,
+      "f1": 0.999638
+    },
+    "ghidra": {
+      "tp": 85196,
+      "fp": 11062,
+      "fn": 456,
+      "precision": 0.88508,
+      "recall": 0.994676,
+      "f1": 0.936683
+    },
+    "r2": {
+      "tp": 53422,
+      "fp": 180,
+      "fn": 32230,
+      "precision": 0.996642,
+      "recall": 0.62371,
+      "f1": 0.76726
+    },
+    "angr": {
+      "tp": 76865,
+      "fp": 257639,
+      "fn": 8787,
+      "precision": 0.229788,
+      "recall": 0.89741,
+      "f1": 0.365888
+    }
+  },
+  "total_ground_truth": 85652,
+  "num_binaries": 10
+}

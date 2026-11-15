@@ -1,0 +1,8 @@
+ERROR    | 2026-11-15 00:42:17,450 | angr.state_plugins.unicorn_engine | failed loading "unicornlib.so", unicorn support disabled ('NoneType' object has no attribute 'unicorn_py3')
+WARNING  | 2026-11-15 00:42:17,895 | cle.loader     | Symbol imported without a known size; emulation may fail if it is used non-opaqely: am_parent, data_blob_null, poptHelpOptions. See https://docs.angr.io/extending-angr/environment#simdata
+angr: mapped_base = 0x400000
+angr: PLT section .plt: 0x405020 - 0x405e0f
+angr: PLT section .plt.got: 0x405e10 - 0x405e1f
+angr: PLT section .plt.sec: 0x405e20 - 0x406bff
+angr: wrote 172 function addresses to /tmp/wunstrip_bench/smbd/angr_addrs.txt
+  (skipped 669 PLT, 225 SimProcedure, 0 external)

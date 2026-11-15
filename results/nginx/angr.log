@@ -1,0 +1,17 @@
+ERROR    | 2026-11-15 00:30:18,925 | angr.state_plugins.unicorn_engine | failed loading "unicornlib.so", unicorn support disabled ('NoneType' object has no attribute 'unicorn_py3')
+angr: mapped_base = 0x400000
+angr: PLT section .plt: 0x423020 - 0x42483f
+angr: PLT section .plt.got: 0x424840 - 0x42486f
+angr: PLT section .plt.sec: 0x424870 - 0x42607f
+WARNING  | 2026-11-15 00:30:22,076 | angr.storage.memory_mixins.default_filler_mixin | The program is accessing register with an unspecified value. This could indicate unwanted behavior.
+WARNING  | 2026-11-15 00:30:22,076 | angr.storage.memory_mixins.default_filler_mixin | angr will cope with this by generating an unconstrained symbolic variable and continuing. You can resolve this by:
+WARNING  | 2026-11-15 00:30:22,076 | angr.storage.memory_mixins.default_filler_mixin | 1) setting a value to the initial state
+WARNING  | 2026-11-15 00:30:22,076 | angr.storage.memory_mixins.default_filler_mixin | 2) adding the state option ZERO_FILL_UNCONSTRAINED_{MEMORY,REGISTERS}, to make unknown regions hold null
+WARNING  | 2026-11-15 00:30:22,076 | angr.storage.memory_mixins.default_filler_mixin | 3) adding the state option SYMBOL_FILL_UNCONSTRAINED_{MEMORY,REGISTERS}, to suppress these messages.
+WARNING  | 2026-11-15 00:30:22,076 | angr.storage.memory_mixins.default_filler_mixin | Filling register rbx with 8 unconstrained bytes referenced from 0x0 (not part of a loaded object)
+WARNING  | 2026-11-15 00:30:22,077 | angr.storage.memory_mixins.default_filler_mixin | Filling register r13 with 8 unconstrained bytes referenced from 0x0 (not part of a loaded object)
+WARNING  | 2026-11-15 00:30:22,077 | angr.storage.memory_mixins.default_filler_mixin | Filling register r12 with 8 unconstrained bytes referenced from 0x0 (not part of a loaded object)
+WARNING  | 2026-11-15 00:30:22,077 | angr.storage.memory_mixins.default_filler_mixin | Filling register r15 with 8 unconstrained bytes referenced from 0x0 (not part of a loaded object)
+WARNING  | 2026-11-15 00:30:22,077 | angr.storage.memory_mixins.default_filler_mixin | Filling register rsp with 8 unconstrained bytes referenced from 0x456291 (ngx_thread_mutex_create+0x2b1 in nginx (0x56291))
+angr: wrote 8728 function addresses to /tmp/wunstrip_bench/nginx/angr_addrs.txt
+  (skipped 1160 PLT, 390 SimProcedure, 0 external)

@@ -1,0 +1,118 @@
+openjdk version "21.0.13.0.3" 2026-10-24
+OpenJDK Runtime Environment (build 21.0.13.0.3+1-1-24.04.1-Ubuntu)
+OpenJDK 64-Bit Server VM (build 21.0.13.0.3+1-1-24.04.1-Ubuntu, mixed mode)
+INFO  Using log config file: jar:file:/opt/ghidra_11.3.2_PUBLIC/Ghidra/Framework/Generic/lib/Generic.jar!/generic.log4j.xml (LoggingInitialization)  
+INFO  Using log file: /root/.config/ghidra/ghidra_11.3.2_PUBLIC/application.log (LoggingInitialization)  
+INFO  Loading user preferences: /root/.config/ghidra/ghidra_11.3.2_PUBLIC/preferences (Preferences)  
+INFO  Searching for classes... (ClassSearcher)  
+INFO  Class search complete (660 ms) (ClassSearcher)  
+INFO  Initializing SSL Context (SSLContextInitializer)  
+INFO  Initializing Random Number Generator... (SecureRandomFactory)  
+INFO  Random Number Generator initialization complete: NativePRNGNonBlocking (SecureRandomFactory)  
+INFO  Trust manager disabled, cacerts have not been set (ApplicationTrustManagerFactory)  
+INFO  Headless startup complete (1268 ms) (AnalyzeHeadless)  
+INFO  Class searcher loaded 57 extension points (18 false positives) (ClassSearcher)  
+INFO  HEADLESS Script Paths:
+    /opt/ghidra_11.3.2_PUBLIC/Ghidra/Features/GnuDemangler/ghidra_scripts
+    /opt/ghidra_11.3.2_PUBLIC/Ghidra/Features/SystemEmulation/ghidra_scripts
+    /opt/ghidra_11.3.2_PUBLIC/Ghidra/Processors/JVM/ghidra_scripts
+    /opt/ghidra_11.3.2_PUBLIC/Ghidra/Processors/PIC/ghidra_scripts
+    /opt/ghidra_11.3.2_PUBLIC/Ghidra/Features/BSim/ghidra_scripts
+    /opt/ghidra_11.3.2_PUBLIC/Ghidra/Features/BytePatterns/ghidra_scripts
+    /opt/ghidra_11.3.2_PUBLIC/Ghidra/Features/FunctionID/ghidra_scripts
+    /opt/ghidra_11.3.2_PUBLIC/Ghidra/Debug/Debugger-rmi-trace/ghidra_scripts
+    /opt/ghidra_11.3.2_PUBLIC/Ghidra/Debug/Debugger/ghidra_scripts
+    /opt/ghidra_11.3.2_PUBLIC/Ghidra/Features/Decompiler/ghidra_scripts
+    /opt/ghidra_11.3.2_PUBLIC/Ghidra/Features/MicrosoftCodeAnalyzer/ghidra_scripts
+    /opt/ghidra_11.3.2_PUBLIC/Ghidra/Features/WildcardAssembler/ghidra_scripts
+    /opt/ghidra_11.3.2_PUBLIC/Ghidra/Features/SwiftDemangler/ghidra_scripts
+    /opt/ghidra_11.3.2_PUBLIC/Ghidra/Processors/8051/ghidra_scripts
+    /opt/ghidra_11.3.2_PUBLIC/Ghidra/Processors/Atmel/ghidra_scripts
+    /opt/ghidra_11.3.2_PUBLIC/Ghidra/Features/DecompilerDependent/ghidra_scripts
+    /opt/ghidra_11.3.2_PUBLIC/Ghidra/Features/PDB/ghidra_scripts
+    /opt/ghidra_11.3.2_PUBLIC/Ghidra/Features/PyGhidra/ghidra_scripts
+    /opt/ghidra_11.3.2_PUBLIC/Ghidra/Features/VersionTracking/ghidra_scripts
+    /opt/ghidra_11.3.2_PUBLIC/Ghidra/Processors/DATA/ghidra_scripts
+    /opt/ghidra_11.3.2_PUBLIC/Ghidra/Features/Jython/ghidra_scripts
+    /opt/ghidra_11.3.2_PUBLIC/Ghidra/Features/Base/ghidra_scripts
+    /opt/ghidra_11.3.2_PUBLIC/Ghidra/Features/FileFormats/ghidra_scripts (HeadlessAnalyzer)  
+INFO  HEADLESS: execution starts (HeadlessAnalyzer)  
+INFO  Creating temporary project: /tmp/wunstrip_bench/nginx/ghidra_proj/proj_nginx (HeadlessAnalyzer)  
+INFO  Creating project: /tmp/wunstrip_bench/nginx/ghidra_proj/proj_nginx (DefaultProject)  
+INFO  REPORT: Processing input files:  (HeadlessAnalyzer)  
+INFO       project: /tmp/wunstrip_bench/nginx/ghidra_proj/proj_nginx (HeadlessAnalyzer)  
+INFO  IMPORTING: file:///tmp/wunstrip_bench/nginx/nginx (HeadlessAnalyzer)  
+INFO  Using Loader: Executable and Linking Format (ELF) (AutoImporter)  
+INFO  Using Language/Compiler: x86:LE:64:default:gcc (AutoImporter)  
+INFO  Using Library Search Path: [., /bin, /lib, /lib64, /lib/x86_64-linux-gnu, /lib/aarch64-linux-gnu, /usr/bin, /usr/lib, /usr/X11R6/bin, /usr/X11R6/lib, /usr/java/packages/lib, /usr/lib/x86_64-linux-gnu/jni, /usr/lib/x86_64-linux-gnu, /usr/lib/jni] (AutoImporter)  
+INFO  Additional info:
+Loading file:///tmp/wunstrip_bench/nginx/nginx?MD5=910da788f763a9fa7aa1dd9bf270701a...
+Setting block .init_array to read-only
+Setting block .fini_array to read-only
+Setting block .data.rel.ro to read-only
+Setting block .dynamic to read-only
+Failed to markup ELF Note at 00100338: data conflict
+Failed to markup ELF Note at 00100368: data conflict
+Failed to markup ELF Note at 0010038c: data conflict
+------------------------------------------------
+
+Linking the External Programs of 'nginx' to imported libraries...
+  [libcrypt.so.1] -> not found in project
+  [libpcre2-8.so.0] -> not found in project
+  [libssl.so.3] -> not found in project
+  [libcrypto.so.3] -> not found in project
+  [libz.so.1] -> not found in project
+  [libc.so.6] -> not found in project
+------------------------------------------------
+
+Resolving External Symbols of [/nginx] - 390 unresolved symbols, no external libraries configured - skipping
+ (AutoImporter)  
+INFO  IMPORTING: Loaded 0 additional files (HeadlessAnalyzer)  
+INFO  ANALYZING all memory and code: file:///tmp/wunstrip_bench/nginx/nginx (HeadlessAnalyzer)  
+INFO  DWARF external debug information found: ExternalDebugInfo [filename=21f3d96634c0676aef6515348bc4263aec9c48.debug, crc=f146daab, hash=d021f3d96634c0676aef6515348bc4263aec9c48] (ExternalDebugFileSectionProvider)  
+INFO  Unable to find DWARF information, skipping DWARF analysis (DWARFAnalyzer)  
+INFO  hit non-returning function, restarting decompiler switch analyzer later (DecompilerSwitchAnalyzer)  
+INFO  Packed database cache: /var/tmp/root-ghidra/packed-db-cache (PackedDatabaseCache)  
+INFO  Applied data type archive: generic_clib_64 (ApplyDataArchiveAnalyzer)  
+INFO  -----------------------------------------------------
+    ASCII Strings                              0.294 secs
+    Apply Data Archives                        0.308 secs
+    Call Convention ID                         0.015 secs
+    Call-Fixup Installer                       0.017 secs
+    Create Address Tables                      0.233 secs
+    Create Address Tables - One Time           0.097 secs
+    Create Function                            0.039 secs
+    DWARF                                      0.005 secs
+    Data Reference                             0.237 secs
+    Decompiler Switch Analysis                 0.262 secs
+    Decompiler Switch Analysis - One Time      3.712 secs
+    Demangler GNU                              0.047 secs
+    Disassemble Entry Points                   3.494 secs
+    ELF Scalar Operand References              1.271 secs
+    Embedded Media                             0.022 secs
+    External Entry References                  0.005 secs
+    Function ID                                1.044 secs
+    Function Start Search                      0.085 secs
+    Function Start Search After Code           0.043 secs
+    Function Start Search After Data           0.037 secs
+    GCC Exception Handlers                     0.638 secs
+    Non-Returning Functions - Discovered       0.882 secs
+    Non-Returning Functions - Known            0.005 secs
+    Reference                                  0.376 secs
+    Shared Return Calls                        0.238 secs
+    Stack                                      5.120 secs
+    Subroutine References                      0.110 secs
+    Subroutine References - One Time           0.000 secs
+    x86 Constant Reference Analyzer            4.982 secs
+-----------------------------------------------------
+     Total Time   23 secs
+-----------------------------------------------------
+ (AutoAnalysisManager)  
+INFO  REPORT: Analysis succeeded for file: file:///tmp/wunstrip_bench/nginx/nginx (HeadlessAnalyzer)  
+INFO  SCRIPT: /root/ghidra_extract.py (HeadlessAnalyzer)  
+Ghidra: wrote 1654 function addresses to /tmp/wunstrip_bench/nginx/ghidra_addrs.txt
+  (image base: 0x100000, skipped 792 PLT/thunks, 0 external)
+INFO  ANALYZING changes made by post scripts: file:///tmp/wunstrip_bench/nginx/nginx (HeadlessAnalyzer)  
+INFO  REPORT: Post-analysis succeeded for file: file:///tmp/wunstrip_bench/nginx/nginx (HeadlessAnalyzer)  
+INFO  REPORT: Save succeeded for: /nginx (proj_nginx:/nginx) (HeadlessAnalyzer)  
+INFO  REPORT: Import succeeded (HeadlessAnalyzer)  

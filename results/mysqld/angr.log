@@ -1,0 +1,19 @@
+ERROR    | 2026-11-15 00:14:46,032 | angr.state_plugins.unicorn_engine | failed loading "unicornlib.so", unicorn support disabled ('NoneType' object has no attribute 'unicorn_py3')
+WARNING  | 2026-11-15 00:14:51,860 | cle.loader     | Symbol imported without a known size; emulation may fail if it is used non-opaqely: _ZN6google8protobuf2io16CodedInputStream24default_recursion_limit_E, _ZN6google8protobuf8internal26fixed_address_empty_stringB5cxx11E, _ZN6google8protobuf8internal28init_protobuf_defaults_stateE, _ZNSt5ctypeIcE2idE, _ZNSt7__cxx117collateIcE2idE, _ZNSt7__cxx118numpunctIcE2idE, _ZSt11__once_call, _ZSt15__once_callable, _ZSt4cerr, _ZSt7nothrow, _ZTIN6google8protobuf11MessageLiteE, _ZTIN6icu_748ByteSinkE, _ZTINSt13__future_base12_Result_baseE, _ZTINSt6thread6_StateE, _ZTISd, _ZTISi, _ZTISo, _ZTISt11logic_error, _ZTISt11range_error, _ZTISt12domain_error, _ZTISt12length_error, _ZTISt12out_of_range, _ZTISt15basic_streambufIcSt11char_traitsIcEE, _ZTISt15underflow_error, _ZTISt16invalid_argument, _ZTISt8bad_cast, _ZTVN10__cxxabiv116__enum_type_infoE, _ZTVN10__cxxabiv117__class_type_infoE, _ZTVN10__cxxabiv119__pointer_type_infoE, _ZTVN10__cxxabiv120__function_type_infoE, _ZTVN10__cxxabiv120__si_class_type_infoE, _ZTVN10__cxxabiv121__vmi_class_type_infoE, _ZTVN6google8protobuf11MessageLiteE, __libc_single_threaded, __tzname. See https://docs.angr.io/extending-angr/environment#simdata
+angr: mapped_base = 0x400000
+angr: PLT section .plt: 0xcc3020 - 0xcc66ef
+angr: PLT section .plt.got: 0xcc66f0 - 0xcc679f
+angr: PLT section .plt.sec: 0xcc67a0 - 0xcc9e5f
+WARNING  | 2026-11-15 00:15:12,719 | angr.storage.memory_mixins.default_filler_mixin | The program is accessing register with an unspecified value. This could indicate unwanted behavior.
+WARNING  | 2026-11-15 00:15:12,720 | angr.storage.memory_mixins.default_filler_mixin | angr will cope with this by generating an unconstrained symbolic variable and continuing. You can resolve this by:
+WARNING  | 2026-11-15 00:15:12,720 | angr.storage.memory_mixins.default_filler_mixin | 1) setting a value to the initial state
+WARNING  | 2026-11-15 00:15:12,720 | angr.storage.memory_mixins.default_filler_mixin | 2) adding the state option ZERO_FILL_UNCONSTRAINED_{MEMORY,REGISTERS}, to make unknown regions hold null
+WARNING  | 2026-11-15 00:15:12,720 | angr.storage.memory_mixins.default_filler_mixin | 3) adding the state option SYMBOL_FILL_UNCONSTRAINED_{MEMORY,REGISTERS}, to suppress these messages.
+WARNING  | 2026-11-15 00:15:12,720 | angr.storage.memory_mixins.default_filler_mixin | Filling register rdi with 8 unconstrained bytes referenced from 0x3e00ee0 (pthread_create+0x0 in extern-address space (0xee0))
+WARNING  | 2026-11-15 00:15:12,720 | angr.storage.memory_mixins.default_filler_mixin | Filling register rsi with 8 unconstrained bytes referenced from 0x3e00ee0 (pthread_create+0x0 in extern-address space (0xee0))
+WARNING  | 2026-11-15 00:15:12,720 | angr.storage.memory_mixins.default_filler_mixin | Filling register rdx with 8 unconstrained bytes referenced from 0x3e00ee0 (pthread_create+0x0 in extern-address space (0xee0))
+WARNING  | 2026-11-15 00:15:12,720 | angr.storage.memory_mixins.default_filler_mixin | Filling register rcx with 8 unconstrained bytes referenced from 0x3e00ee0 (pthread_create+0x0 in extern-address space (0xee0))
+WARNING  | 2026-11-15 00:15:12,720 | angr.storage.memory_mixins.default_filler_mixin | Filling register rsp with 8 unconstrained bytes referenced from 0x3e00ee0 (pthread_create+0x0 in extern-address space (0xee0))
+ERROR    | 2026-11-15 00:19:19,843 | angr.analyses.fcp.fcp.SimEngineFCPVEX | Unsupported Dirty amd64g_dirtyhelper_RDTSC.
+angr: wrote 250072 function addresses to /tmp/wunstrip_bench/mysqld/angr_addrs.txt
+  (skipped 2641 PLT, 884 SimProcedure, 0 external)

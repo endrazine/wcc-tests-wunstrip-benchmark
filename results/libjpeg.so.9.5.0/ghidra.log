@@ -1,0 +1,113 @@
+openjdk version "21.0.13.0.3" 2026-10-24
+OpenJDK Runtime Environment (build 21.0.13.0.3+1-1-24.04.1-Ubuntu)
+OpenJDK 64-Bit Server VM (build 21.0.13.0.3+1-1-24.04.1-Ubuntu, mixed mode)
+INFO  Using log config file: jar:file:/opt/ghidra_11.3.2_PUBLIC/Ghidra/Framework/Generic/lib/Generic.jar!/generic.log4j.xml (LoggingInitialization)  
+INFO  Using log file: /root/.config/ghidra/ghidra_11.3.2_PUBLIC/application.log (LoggingInitialization)  
+INFO  Loading user preferences: /root/.config/ghidra/ghidra_11.3.2_PUBLIC/preferences (Preferences)  
+INFO  Searching for classes... (ClassSearcher)  
+INFO  Class search complete (677 ms) (ClassSearcher)  
+INFO  Initializing SSL Context (SSLContextInitializer)  
+INFO  Initializing Random Number Generator... (SecureRandomFactory)  
+INFO  Random Number Generator initialization complete: NativePRNGNonBlocking (SecureRandomFactory)  
+INFO  Trust manager disabled, cacerts have not been set (ApplicationTrustManagerFactory)  
+INFO  Starting cache cleanup: /var/tmp/root-ghidra/fscache2 (FileCacheMaintenanceDaemon)  
+INFO  Finished cache cleanup, estimated storage used: 0 (FileCacheMaintenanceDaemon)  
+INFO  Headless startup complete (1305 ms) (AnalyzeHeadless)  
+INFO  Class searcher loaded 57 extension points (18 false positives) (ClassSearcher)  
+INFO  HEADLESS Script Paths:
+    /opt/ghidra_11.3.2_PUBLIC/Ghidra/Features/GnuDemangler/ghidra_scripts
+    /opt/ghidra_11.3.2_PUBLIC/Ghidra/Features/SystemEmulation/ghidra_scripts
+    /opt/ghidra_11.3.2_PUBLIC/Ghidra/Processors/JVM/ghidra_scripts
+    /opt/ghidra_11.3.2_PUBLIC/Ghidra/Processors/PIC/ghidra_scripts
+    /opt/ghidra_11.3.2_PUBLIC/Ghidra/Features/BSim/ghidra_scripts
+    /opt/ghidra_11.3.2_PUBLIC/Ghidra/Features/BytePatterns/ghidra_scripts
+    /opt/ghidra_11.3.2_PUBLIC/Ghidra/Features/FunctionID/ghidra_scripts
+    /opt/ghidra_11.3.2_PUBLIC/Ghidra/Debug/Debugger-rmi-trace/ghidra_scripts
+    /opt/ghidra_11.3.2_PUBLIC/Ghidra/Debug/Debugger/ghidra_scripts
+    /opt/ghidra_11.3.2_PUBLIC/Ghidra/Features/Decompiler/ghidra_scripts
+    /opt/ghidra_11.3.2_PUBLIC/Ghidra/Features/MicrosoftCodeAnalyzer/ghidra_scripts
+    /opt/ghidra_11.3.2_PUBLIC/Ghidra/Features/WildcardAssembler/ghidra_scripts
+    /opt/ghidra_11.3.2_PUBLIC/Ghidra/Features/SwiftDemangler/ghidra_scripts
+    /opt/ghidra_11.3.2_PUBLIC/Ghidra/Processors/8051/ghidra_scripts
+    /opt/ghidra_11.3.2_PUBLIC/Ghidra/Processors/Atmel/ghidra_scripts
+    /opt/ghidra_11.3.2_PUBLIC/Ghidra/Features/DecompilerDependent/ghidra_scripts
+    /opt/ghidra_11.3.2_PUBLIC/Ghidra/Features/PDB/ghidra_scripts
+    /opt/ghidra_11.3.2_PUBLIC/Ghidra/Features/PyGhidra/ghidra_scripts
+    /opt/ghidra_11.3.2_PUBLIC/Ghidra/Features/VersionTracking/ghidra_scripts
+    /opt/ghidra_11.3.2_PUBLIC/Ghidra/Processors/DATA/ghidra_scripts
+    /opt/ghidra_11.3.2_PUBLIC/Ghidra/Features/Jython/ghidra_scripts
+    /opt/ghidra_11.3.2_PUBLIC/Ghidra/Features/Base/ghidra_scripts
+    /opt/ghidra_11.3.2_PUBLIC/Ghidra/Features/FileFormats/ghidra_scripts (HeadlessAnalyzer)  
+INFO  HEADLESS: execution starts (HeadlessAnalyzer)  
+INFO  Creating temporary project: /tmp/wunstrip_bench/libjpeg.so.9.5.0/ghidra_proj/proj_libjpeg.so.9.5.0 (HeadlessAnalyzer)  
+INFO  Creating project: /tmp/wunstrip_bench/libjpeg.so.9.5.0/ghidra_proj/proj_libjpeg.so.9.5.0 (DefaultProject)  
+INFO  REPORT: Processing input files:  (HeadlessAnalyzer)  
+INFO       project: /tmp/wunstrip_bench/libjpeg.so.9.5.0/ghidra_proj/proj_libjpeg.so.9.5.0 (HeadlessAnalyzer)  
+INFO  IMPORTING: file:///tmp/wunstrip_bench/libjpeg.so.9.5.0/libjpeg.so.9.5.0 (HeadlessAnalyzer)  
+INFO  Using Loader: Executable and Linking Format (ELF) (AutoImporter)  
+INFO  Using Language/Compiler: x86:LE:64:default:gcc (AutoImporter)  
+INFO  Using Library Search Path: [., /bin, /lib, /lib64, /lib/x86_64-linux-gnu, /lib/aarch64-linux-gnu, /usr/bin, /usr/lib, /usr/X11R6/bin, /usr/X11R6/lib, /usr/java/packages/lib, /usr/lib/x86_64-linux-gnu/jni, /usr/lib/x86_64-linux-gnu, /usr/lib/jni] (AutoImporter)  
+INFO  Additional info:
+Loading file:///tmp/wunstrip_bench/libjpeg.so.9.5.0/libjpeg.so.9.5.0?MD5=b3edf65aeebb3d16b92566b33937dce3...
+Setting block .init_array to read-only
+Setting block .fini_array to read-only
+Setting block .data.rel.ro to read-only
+Setting block .dynamic to read-only
+Failed to markup ELF Note at 001002a8: data conflict
+Failed to markup ELF Note at 001002c8: data conflict
+------------------------------------------------
+
+Linking the External Programs of 'libjpeg.so.9.5.0' to imported libraries...
+  [libc.so.6] -> not found in project
+------------------------------------------------
+
+Resolving External Symbols of [/libjpeg.so.9.5.0] - 16 unresolved symbols, no external libraries configured - skipping
+ (AutoImporter)  
+INFO  IMPORTING: Loaded 0 additional files (HeadlessAnalyzer)  
+INFO  ANALYZING all memory and code: file:///tmp/wunstrip_bench/libjpeg.so.9.5.0/libjpeg.so.9.5.0 (HeadlessAnalyzer)  
+INFO  DWARF external debug information found: ExternalDebugInfo [filename=714479fbd505449ca7712cff0db20b651bad05.debug, crc=1446c4d1, hash=9f714479fbd505449ca7712cff0db20b651bad05] (ExternalDebugFileSectionProvider)  
+INFO  Unable to find DWARF information, skipping DWARF analysis (DWARFAnalyzer)  
+INFO  hit non-returning function, restarting decompiler switch analyzer later (DecompilerSwitchAnalyzer)  
+INFO  Packed database cache: /var/tmp/root-ghidra/packed-db-cache (PackedDatabaseCache)  
+INFO  Applied data type archive: generic_clib_64 (ApplyDataArchiveAnalyzer)  
+INFO  -----------------------------------------------------
+    ASCII Strings                              0.211 secs
+    Apply Data Archives                        0.143 secs
+    Call Convention ID                         0.004 secs
+    Call-Fixup Installer                       0.004 secs
+    Create Address Tables                      0.039 secs
+    Create Function                            0.027 secs
+    DWARF                                      0.004 secs
+    Data Reference                             0.023 secs
+    Decompiler Switch Analysis                 0.551 secs
+    Decompiler Switch Analysis - One Time      2.714 secs
+    Demangler GNU                              0.013 secs
+    Disassemble Entry Points                   1.235 secs
+    ELF Scalar Operand References              0.351 secs
+    Embedded Media                             0.009 secs
+    External Entry References                  0.002 secs
+    Function ID                                0.241 secs
+    Function Start Search                      0.021 secs
+    Function Start Search After Code           0.008 secs
+    Function Start Search After Data           0.007 secs
+    GCC Exception Handlers                     0.182 secs
+    Non-Returning Functions - Discovered       0.196 secs
+    Non-Returning Functions - Known            0.003 secs
+    Reference                                  0.037 secs
+    Shared Return Calls                        0.054 secs
+    Stack                                      1.495 secs
+    Subroutine References                      0.018 secs
+    Subroutine References - One Time           0.000 secs
+    x86 Constant Reference Analyzer            1.384 secs
+-----------------------------------------------------
+     Total Time   8 secs
+-----------------------------------------------------
+ (AutoAnalysisManager)  
+INFO  REPORT: Analysis succeeded for file: file:///tmp/wunstrip_bench/libjpeg.so.9.5.0/libjpeg.so.9.5.0 (HeadlessAnalyzer)  
+INFO  SCRIPT: /root/ghidra_extract.py (HeadlessAnalyzer)  
+Ghidra: wrote 364 function addresses to /tmp/wunstrip_bench/libjpeg.so.9.5.0/ghidra_addrs.txt
+  (image base: 0x100000, skipped 96 PLT/thunks, 0 external)
+INFO  ANALYZING changes made by post scripts: file:///tmp/wunstrip_bench/libjpeg.so.9.5.0/libjpeg.so.9.5.0 (HeadlessAnalyzer)  
+INFO  REPORT: Post-analysis succeeded for file: file:///tmp/wunstrip_bench/libjpeg.so.9.5.0/libjpeg.so.9.5.0 (HeadlessAnalyzer)  
+INFO  REPORT: Save succeeded for: /libjpeg.so.9.5.0 (proj_libjpeg.so.9.5.0:/libjpeg.so.9.5.0) (HeadlessAnalyzer)  
+INFO  REPORT: Import succeeded (HeadlessAnalyzer)  

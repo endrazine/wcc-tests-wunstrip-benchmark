@@ -1,0 +1,12 @@
+ERROR    | 2026-11-15 00:37:07,841 | angr.state_plugins.unicorn_engine | failed loading "unicornlib.so", unicorn support disabled ('NoneType' object has no attribute 'unicorn_py3')
+WARNING  | 2026-11-15 00:37:09,095 | cle.loader     | Symbol imported without a known size; emulation may fail if it is used non-opaqely: in6addr_any, opterr, xmlFree, xmlIsBaseCharGroup, xmlIsCombiningGroup, xmlIsDigitGroup, xmlIsExtenderGroup. See https://docs.angr.io/extending-angr/environment#simdata
+angr: mapped_base = 0x400000
+angr: PLT section .plt: 0x4d2020 - 0x4d423f
+angr: PLT section .plt.got: 0x4d4240 - 0x4d429f
+angr: PLT section .plt.sec: 0x4d42a0 - 0x4d64af
+WARNING  | 2026-11-15 00:38:31,999 | angr.analyses.cfg.indirect_jump_resolvers.jumptable | Jump table at 0x9c99bc has no target in executable memory; treating the indirect jump as unresolved.
+WARNING  | 2026-11-15 00:38:32,177 | angr.analyses.cfg.indirect_jump_resolvers.jumptable | Jump table at 0xb076e9 has no target in executable memory; treating the indirect jump as unresolved.
+WARNING  | 2026-11-15 00:38:44,130 | angr.analyses.cfg.indirect_jump_resolvers.jumptable | Jump table at 0x6b233a has no target in executable memory; treating the indirect jump as unresolved.
+ERROR    | 2026-11-15 00:38:58,559 | angr.analyses.fcp.fcp.SimEngineFCPVEX | Unsupported Dirty amd64g_dirtyhelper_CPUID_avx512_SKX.
+angr: wrote 58923 function addresses to /tmp/wunstrip_bench/postgres/angr_addrs.txt
+  (skipped 1643 PLT, 553 SimProcedure, 0 external)

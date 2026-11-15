@@ -1,0 +1,14 @@
+ERROR    | 2026-11-14 23:58:47,469 | angr.state_plugins.unicorn_engine | failed loading "unicornlib.so", unicorn support disabled ('NoneType' object has no attribute 'unicorn_py3')
+angr: mapped_base = 0x400000
+angr: PLT section .plt: 0x403020 - 0x40320f
+angr: PLT section .plt.got: 0x403210 - 0x40321f
+angr: PLT section .plt.sec: 0x403220 - 0x4033ff
+WARNING  | 2026-11-14 23:58:48,929 | angr.storage.memory_mixins.default_filler_mixin | The program is accessing register with an unspecified value. This could indicate unwanted behavior.
+WARNING  | 2026-11-14 23:58:48,930 | angr.storage.memory_mixins.default_filler_mixin | angr will cope with this by generating an unconstrained symbolic variable and continuing. You can resolve this by:
+WARNING  | 2026-11-14 23:58:48,930 | angr.storage.memory_mixins.default_filler_mixin | 1) setting a value to the initial state
+WARNING  | 2026-11-14 23:58:48,930 | angr.storage.memory_mixins.default_filler_mixin | 2) adding the state option ZERO_FILL_UNCONSTRAINED_{MEMORY,REGISTERS}, to make unknown regions hold null
+WARNING  | 2026-11-14 23:58:48,930 | angr.storage.memory_mixins.default_filler_mixin | 3) adding the state option SYMBOL_FILL_UNCONSTRAINED_{MEMORY,REGISTERS}, to suppress these messages.
+WARNING  | 2026-11-14 23:58:48,930 | angr.storage.memory_mixins.default_filler_mixin | Filling register r14 with 8 unconstrained bytes referenced from 0x0 (not part of a loaded object)
+WARNING  | 2026-11-14 23:58:48,930 | angr.storage.memory_mixins.default_filler_mixin | Filling register rsp with 8 unconstrained bytes referenced from 0x410890 (lzma_easy_buffer_encode+0xd10 in liblzma.so.5 (0x10890))
+angr: wrote 1421 function addresses to /tmp/wunstrip_bench/liblzma.so.5/angr_addrs.txt
+  (skipped 93 PLT, 32 SimProcedure, 0 external)

@@ -1,0 +1,115 @@
+openjdk version "21.0.13.0.3" 2026-10-24
+OpenJDK Runtime Environment (build 21.0.13.0.3+1-1-24.04.1-Ubuntu)
+OpenJDK 64-Bit Server VM (build 21.0.13.0.3+1-1-24.04.1-Ubuntu, mixed mode)
+INFO  Using log config file: jar:file:/opt/ghidra_11.3.2_PUBLIC/Ghidra/Framework/Generic/lib/Generic.jar!/generic.log4j.xml (LoggingInitialization)  
+INFO  Using log file: /root/.config/ghidra/ghidra_11.3.2_PUBLIC/application.log (LoggingInitialization)  
+INFO  Loading user preferences: /root/.config/ghidra/ghidra_11.3.2_PUBLIC/preferences (Preferences)  
+INFO  Searching for classes... (ClassSearcher)  
+INFO  Class search complete (679 ms) (ClassSearcher)  
+INFO  Initializing SSL Context (SSLContextInitializer)  
+INFO  Initializing Random Number Generator... (SecureRandomFactory)  
+INFO  Random Number Generator initialization complete: NativePRNGNonBlocking (SecureRandomFactory)  
+INFO  Trust manager disabled, cacerts have not been set (ApplicationTrustManagerFactory)  
+INFO  Headless startup complete (1310 ms) (AnalyzeHeadless)  
+INFO  Class searcher loaded 57 extension points (18 false positives) (ClassSearcher)  
+INFO  HEADLESS Script Paths:
+    /opt/ghidra_11.3.2_PUBLIC/Ghidra/Features/GnuDemangler/ghidra_scripts
+    /opt/ghidra_11.3.2_PUBLIC/Ghidra/Features/SystemEmulation/ghidra_scripts
+    /opt/ghidra_11.3.2_PUBLIC/Ghidra/Processors/JVM/ghidra_scripts
+    /opt/ghidra_11.3.2_PUBLIC/Ghidra/Processors/PIC/ghidra_scripts
+    /opt/ghidra_11.3.2_PUBLIC/Ghidra/Features/BSim/ghidra_scripts
+    /opt/ghidra_11.3.2_PUBLIC/Ghidra/Features/BytePatterns/ghidra_scripts
+    /opt/ghidra_11.3.2_PUBLIC/Ghidra/Features/FunctionID/ghidra_scripts
+    /opt/ghidra_11.3.2_PUBLIC/Ghidra/Debug/Debugger-rmi-trace/ghidra_scripts
+    /opt/ghidra_11.3.2_PUBLIC/Ghidra/Debug/Debugger/ghidra_scripts
+    /opt/ghidra_11.3.2_PUBLIC/Ghidra/Features/Decompiler/ghidra_scripts
+    /opt/ghidra_11.3.2_PUBLIC/Ghidra/Features/MicrosoftCodeAnalyzer/ghidra_scripts
+    /opt/ghidra_11.3.2_PUBLIC/Ghidra/Features/WildcardAssembler/ghidra_scripts
+    /opt/ghidra_11.3.2_PUBLIC/Ghidra/Features/SwiftDemangler/ghidra_scripts
+    /opt/ghidra_11.3.2_PUBLIC/Ghidra/Processors/8051/ghidra_scripts
+    /opt/ghidra_11.3.2_PUBLIC/Ghidra/Processors/Atmel/ghidra_scripts
+    /opt/ghidra_11.3.2_PUBLIC/Ghidra/Features/DecompilerDependent/ghidra_scripts
+    /opt/ghidra_11.3.2_PUBLIC/Ghidra/Features/PDB/ghidra_scripts
+    /opt/ghidra_11.3.2_PUBLIC/Ghidra/Features/PyGhidra/ghidra_scripts
+    /opt/ghidra_11.3.2_PUBLIC/Ghidra/Features/VersionTracking/ghidra_scripts
+    /opt/ghidra_11.3.2_PUBLIC/Ghidra/Processors/DATA/ghidra_scripts
+    /opt/ghidra_11.3.2_PUBLIC/Ghidra/Features/Jython/ghidra_scripts
+    /opt/ghidra_11.3.2_PUBLIC/Ghidra/Features/Base/ghidra_scripts
+    /opt/ghidra_11.3.2_PUBLIC/Ghidra/Features/FileFormats/ghidra_scripts (HeadlessAnalyzer)  
+INFO  HEADLESS: execution starts (HeadlessAnalyzer)  
+INFO  Creating temporary project: /tmp/wunstrip_bench/vlc/ghidra_proj/proj_vlc (HeadlessAnalyzer)  
+INFO  Creating project: /tmp/wunstrip_bench/vlc/ghidra_proj/proj_vlc (DefaultProject)  
+INFO  REPORT: Processing input files:  (HeadlessAnalyzer)  
+INFO       project: /tmp/wunstrip_bench/vlc/ghidra_proj/proj_vlc (HeadlessAnalyzer)  
+INFO  IMPORTING: file:///tmp/wunstrip_bench/vlc/vlc (HeadlessAnalyzer)  
+INFO  Using Loader: Executable and Linking Format (ELF) (AutoImporter)  
+INFO  Using Language/Compiler: x86:LE:64:default:gcc (AutoImporter)  
+INFO  Using Library Search Path: [., /bin, /lib, /lib64, /lib/x86_64-linux-gnu, /lib/aarch64-linux-gnu, /usr/bin, /usr/lib, /usr/X11R6/bin, /usr/X11R6/lib, /usr/java/packages/lib, /usr/lib/x86_64-linux-gnu/jni, /usr/lib/x86_64-linux-gnu, /usr/lib/jni] (AutoImporter)  
+INFO  Additional info:
+Loading file:///tmp/wunstrip_bench/vlc/vlc?MD5=01850c0a13a5c036a839daa585e48f18...
+Setting block .init_array to read-only
+Setting block .fini_array to read-only
+Setting block .dynamic to read-only
+Failed to markup ELF Note at 00100338: data conflict
+Failed to markup ELF Note at 00100368: data conflict
+Failed to markup ELF Note at 0010038c: data conflict
+------------------------------------------------
+
+Linking the External Programs of 'vlc' to imported libraries...
+  [libvlc.so.5] -> not found in project
+  [libc.so.6] -> not found in project
+------------------------------------------------
+
+Resolving External Symbols of [/vlc] - 35 unresolved symbols, no external libraries configured - skipping
+ (AutoImporter)  
+INFO  IMPORTING: Loaded 0 additional files (HeadlessAnalyzer)  
+INFO  ANALYZING all memory and code: file:///tmp/wunstrip_bench/vlc/vlc (HeadlessAnalyzer)  
+INFO  DWARF external debug information found: ExternalDebugInfo [filename=6755832ef8bb6ccc424ad2d6d30be209083a92.debug, crc=10c354f8, hash=846755832ef8bb6ccc424ad2d6d30be209083a92] (ExternalDebugFileSectionProvider)  
+INFO  Unable to find DWARF information, skipping DWARF analysis (DWARFAnalyzer)  
+INFO  hit non-returning function, restarting decompiler switch analyzer later (DecompilerSwitchAnalyzer)  
+WARN  Decompiling 00101940, pcode error at 00105070: Unable to disassemble EXTERNAL block location: 00105070 (DecompileCallback)  
+WARN  Decompiling 00101910, pcode error at 00105060: Unable to disassemble EXTERNAL block location: 00105060 (DecompileCallback)  
+INFO  Packed database cache: /var/tmp/root-ghidra/packed-db-cache (PackedDatabaseCache)  
+INFO  Applied data type archive: generic_clib_64 (ApplyDataArchiveAnalyzer)  
+INFO  -----------------------------------------------------
+    ASCII Strings                              0.214 secs
+    Apply Data Archives                        0.148 secs
+    Call Convention ID                         0.000 secs
+    Call-Fixup Installer                       0.002 secs
+    Create Address Tables                      0.003 secs
+    Create Address Tables - One Time           0.001 secs
+    Create Function                            0.011 secs
+    DWARF                                      0.004 secs
+    Data Reference                             0.004 secs
+    Decompiler Switch Analysis                 0.018 secs
+    Decompiler Switch Analysis - One Time      0.698 secs
+    Demangler GNU                              0.005 secs
+    Disassemble Entry Points                   0.050 secs
+    ELF Scalar Operand References              0.008 secs
+    Embedded Media                             0.005 secs
+    External Entry References                  0.000 secs
+    Function ID                                0.012 secs
+    Function Start Search                      0.020 secs
+    Function Start Search After Code           0.000 secs
+    Function Start Search After Data           0.001 secs
+    GCC Exception Handlers                     0.025 secs
+    Non-Returning Functions - Discovered       0.013 secs
+    Non-Returning Functions - Known            0.002 secs
+    Reference                                  0.014 secs
+    Shared Return Calls                        0.006 secs
+    Stack                                      0.040 secs
+    Subroutine References                      0.005 secs
+    Subroutine References - One Time           0.001 secs
+    x86 Constant Reference Analyzer            0.090 secs
+-----------------------------------------------------
+     Total Time   1 secs
+-----------------------------------------------------
+ (AutoAnalysisManager)  
+INFO  REPORT: Analysis succeeded for file: file:///tmp/wunstrip_bench/vlc/vlc (HeadlessAnalyzer)  
+INFO  SCRIPT: /root/ghidra_extract.py (HeadlessAnalyzer)  
+Ghidra: wrote 14 function addresses to /tmp/wunstrip_bench/vlc/ghidra_addrs.txt
+  (image base: 0x100000, skipped 74 PLT/thunks, 0 external)
+INFO  ANALYZING changes made by post scripts: file:///tmp/wunstrip_bench/vlc/vlc (HeadlessAnalyzer)  
+INFO  REPORT: Post-analysis succeeded for file: file:///tmp/wunstrip_bench/vlc/vlc (HeadlessAnalyzer)  
+INFO  REPORT: Save succeeded for: /vlc (proj_vlc:/vlc) (HeadlessAnalyzer)  
+INFO  REPORT: Import succeeded (HeadlessAnalyzer)  

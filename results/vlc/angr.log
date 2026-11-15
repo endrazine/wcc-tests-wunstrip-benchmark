@@ -1,0 +1,7 @@
+ERROR    | 2026-11-15 00:43:26,808 | angr.state_plugins.unicorn_engine | failed loading "unicornlib.so", unicorn support disabled ('NoneType' object has no attribute 'unicorn_py3')
+angr: mapped_base = 0x400000
+angr: PLT section .plt: 0x401020 - 0x40123f
+angr: PLT section .plt.got: 0x401240 - 0x40124f
+angr: PLT section .plt.sec: 0x401250 - 0x40145f
+angr: wrote 28 function addresses to /tmp/wunstrip_bench/vlc/angr_addrs.txt
+  (skipped 102 PLT, 36 SimProcedure, 0 external)
