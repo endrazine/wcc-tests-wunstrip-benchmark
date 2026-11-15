@@ -1,294 +1,189 @@
-# Binary Unstripping Validation Framework
+# Function Address Recovery Benchmark
 
-Comprehensive validation of .eh_frame-based function address recovery for stripped ELF binaries, supporting Appendix D of the doctoral thesis *"Beyond Reachability: Cross-Architecture Binary Libification and Procedural Debugging for Vulnerability Assessment"*.
+Comparative benchmark of function address recovery from stripped ELF binaries, evaluating four tools across 85,652 ground truth functions from ten production binaries.
 
-## Overview
+Supporting material for the doctoral thesis *"Beyond Reachability: Cross-Architecture Binary Libification and Procedural Debugging for Vulnerability Assessment"* (CNAM/CEDRIC, 2026).
 
-This framework validates complete function enumeration in stripped production binaries through three complementary techniques:
+## Results
 
-1. **Exception Frame Parsing** (.eh_frame analysis) - Primary method recovering 99.93% of functions
-2. **Section Header Analysis** - Deterministic recovery of section boundary functions (`_init`, `_fini`)  
-3. **Pattern Fingerprinting** - Compiler runtime identification via stable code signatures
+Aggregate metrics across 85,652 ground truth function addresses from Ubuntu 24.04 LTS production binaries:
 
-### Validation Results
+| Tool | Method | Precision | Recall | F1 | TP | FP | FN |
+|------|--------|-----------|--------|------|--------|---------|--------|
+| **wunstrip** | `.eh_frame` (deterministic) | **100.00%** | **99.93%** | **99.96%** | 85,592 | 2 | 60 |
+| Ghidra 11.3.2 | CFG + heuristics | 88.51% | 99.47% | 93.67% | 85,196 | 11,062 | 456 |
+| radare2 | `aaa` analysis | 99.66% | 62.37% | 76.73% | 53,422 | 180 | 32,230 |
+| angr | CFGFast | 22.98% | 89.74% | 36.59% | 76,865 | 257,639 | 8,787 |
 
-- **Zero False Positives**: 100% precision across 85,594 application function addresses
-- **Complete Coverage**: 100% recall for all application functions (85,594/85,594)
-- **Total Enumeration**: 85,652/85,652 functions via multi-method framework
-- **Scalability**: Validated from 15-function utilities to 61,879-function database servers
+### Per-Binary Breakdown
+
+| Binary | Domain | GT | wunstrip F1 | Ghidra F1 | radare2 F1 | angr F1 |
+|--------|--------|----|-------------|-----------|------------|---------|
+| vlc | Media Player | 15 | 75.0% | 96.6% | 66.7% | 65.1% |
+| smbd | File Server | 48 | 93.3% | 97.9% | 49.2% | 42.7% |
+| ls | Core Utility | 191 | 98.4% | 99.2% | 65.1% | 35.0% |
+| liblzma | Compression | 328 | 99.1% | 98.8% | 71.1% | 36.4% |
+| libjpeg | Image Library | 369 | 99.2% | 99.3% | 65.6% | 42.1% |
+| sshd | SSH Daemon | 834 | 99.6% | 99.6% | 84.0% | 35.3% |
+| nginx | Web Server | 1,663 | 99.8% | 99.7% | 65.1% | 31.8% |
+| proftpd | FTP Server | 2,001 | 99.8% | 98.9% | 83.0% | 35.8% |
+| postgres | Database | 18,324 | 100.0% | 95.7% | 83.0% | 37.8% |
+| mysqld | Database | 61,879 | 100.0% | 92.6% | 74.8% | 36.5% |
+
+## Key Findings
+
+**wunstrip** achieves simultaneous near-perfect precision and recall through deterministic `.eh_frame` parsing. The 2 false positives on PostgreSQL result from weak symbol aliasing (multiple symbol names at the same address, [documented in wcc-tests-wunstrip](https://github.com/endrazine/wcc-tests-wunstrip)). The constant 6 false negatives per binary are compiler runtime functions (`_init`, `_fini`, `__do_global_dtors_aux`, `register_tm_clones`, `deregister_tm_clones`, `frame_dummy`) not covered by `.eh_frame` FDEs but recovered by complementary section header analysis and pattern fingerprinting in the full multi-method framework.
+
+**Ghidra** is the strongest heuristic competitor with excellent recall (99.47%) but generates 11,062 false positives from heuristic misidentification of data as code, particularly on large binaries (9,665 FP on mysqld, 1,384 FP on postgres).
+
+**radare2** takes the opposite tradeoff: extremely precise (99.66%, only 180 FP total) but conservative, missing 37.63% of all functions. Its heuristic analysis only reports functions it is confident about.
+
+**angr** achieves decent recall (89.74%) but catastrophic precision (22.98%), producing 257,639 false positives — three times more phantom functions than real ones exist. This results from CFGFast's aggressive recovery treating data as code.
 
 ## Test Corpus
 
-Ten production binaries from Ubuntu 24.04 LTS spanning diverse application domains:
+Ten production binaries from Ubuntu 24.04 LTS, stripped with modern mitigations enabled:
 
-| Binary | Domain | Functions | Security Hardening |
-|--------|--------|-----------|-------------------|
-| mysqld | Database | 61,879 | Full RELRO, Canary, NX, PIE |
-| postgres | Database | 18,324 | Full RELRO, Canary, NX, PIE |
-| proftpd | FTP Server | 2,001 | Full RELRO, Canary, NX, PIE |
-| nginx | Web Server | 1,663 | Full RELRO, Canary, NX, PIE |
-| sshd | SSH Daemon | 834 | Full RELRO, Canary, NX, PIE |
-| libjpeg.so | Image Library | 369 | Partial RELRO, Canary, NX |
-| liblzma.so | Compression | 328 | Full RELRO, Canary, NX |
-| ls | Core Utility | 191 | Full RELRO, Canary, NX, PIE |
-| smbd | File Server | 48 | Full RELRO, Canary, NX, PIE |
-| vlc | Media Player | 15 | Full RELRO, Canary, NX, PIE |
+| Binary | Path | Functions | PIE | RELRO |
+|--------|------|-----------|-----|-------|
+| vlc | `/usr/bin/vlc` | 15 | Yes | Full |
+| smbd | `/usr/sbin/smbd` | 48 | Yes | Full |
+| ls | `/bin/ls` | 191 | Yes | Full |
+| liblzma.so.5 | `/lib/x86_64-linux-gnu/liblzma.so.5` | 328 | N/A | Full |
+| libjpeg.so.9.5.0 | `/lib/x86_64-linux-gnu/libjpeg.so.9.5.0` | 369 | N/A | Partial |
+| sshd | `/usr/sbin/sshd` | 834 | Yes | Full |
+| nginx | `/usr/sbin/nginx` | 1,663 | Yes | Full |
+| proftpd | `/usr/sbin/proftpd` | 2,001 | Yes | Full |
+| postgres | `/usr/lib/postgresql/16/bin/postgres` | 18,324 | Yes | Full |
+| mysqld | `/usr/sbin/mysqld` | 61,879 | Yes | Full |
 
-**Total**: 85,652 functions across four orders of magnitude, all stripped with modern mitigations enabled.
+**Total**: 85,652 functions across four orders of magnitude.
+
+## Methodology
+
+### Ground Truth
+
+Ground truth function addresses are established via Ubuntu's [debuginfod](https://wiki.ubuntu.com/Debug%20Symbol%20Packages) infrastructure, which provides cryptographically-verified debug symbols matched by Build-ID. These are merged with stripped binaries using `wunstrip -d`, then function addresses extracted via `nm`:
+
+```bash
+# Fetch and merge debug symbols
+wunstrip binary -d -o binary.dbg
+
+# Extract all text section function addresses
+nm binary.dbg | grep -E '\b[tT]\b' | awk '{print $1}' | sort -u
+```
+
+### Address-Based Validation
+
+Comparison is performed on **function start addresses**, not symbol names. This is the security-critical metric: vulnerability assessment and binary libification require code locations, not names. Multiple symbol names may alias to the same address (weak symbols), making name-based comparison unreliable.
+
+### Tool Configuration
+
+- **wunstrip**: `.eh_frame` FDE/CIE parsing via `wunstrip -e -R` (deterministic, no heuristics)
+- **Ghidra 11.3.2**: `analyzeHeadless` with default analysis, addresses normalized by subtracting `ImageBase` (PIE binaries are loaded at 0x100000), PLT/thunk/external functions filtered
+- **radare2**: `aaa` full analysis, function list via `aflj`, `sym.imp.*` PLT stubs filtered
+- **angr**: `CFGFast(normalize=True, force_complete_scan=False)`, addresses normalized by subtracting `mapped_base` (PIE binaries loaded at 0x400000), PLT/SimProcedure/external functions filtered
+
+### PIE Address Normalization
+
+Position-Independent Executables (PIE) are loaded at different base addresses by each analysis tool: Ghidra at `0x100000`, angr at `0x400000`, while `nm` on debug symbol files reports original ELF addresses (typically `0x0`-based for PIE). All addresses are normalized to the original ELF virtual address space before comparison by subtracting each tool's image base offset. Without this normalization, address sets are incomparable and all comparisons show 0% match.
+
+### PLT Filtering
+
+Procedure Linkage Table (PLT) stubs are trampolines to shared library functions, generated by the linker. They are not application code and are not present in the ground truth (debug symbols do not contain PLT entries). All tools' output is filtered to exclude PLT entries for a fair comparison.
 
 ## Quick Start
 
 ### Prerequisites
 
 - Docker Engine 20.10+
-- x86_64 host system  
-- 16GB RAM, 5GB disk space
-- Internet connection for debuginfod symbol retrieval
+- x86_64 host system
+- 16 GB RAM, 10 GB disk space
+- Internet connection (for Docker image pull and Ghidra download)
 
-### Installation & Execution
+### Build & Run
+
 ```bash
-git clone https://github.com/endrazine/wcc-tests-wunstrip
-cd wcc-tests-wunstrip
-make        # Build environment (~20 minutes)
-make test   # Run validation (~3 hours)
-Single Binary Test
-bash
-docker run -it wcc-wunstrip:latest
-cd testcases
-./test_single.sh /bin/ls
-Validation Methodology
-Ground Truth Establishment
-Symbol Retrieval: Fetch cryptographically-verified debug symbols via Ubuntu's debuginfod
-Reconstruction: Merge debug symbols with stripped production binary
-Extraction: Parse function addresses using nm
-Validation: Compare recovered addresses against authoritative ground truth
-Classification: Categorize results by recovery method
-Metrics
-Precision = True Positives / (True Positives + False Positives)
-          = 85,594 / 85,594 = 100.000%
+git clone https://github.com/endrazine/wcc-tests-wunstrip-benchmark
+cd wcc-tests-wunstrip-benchmark
+make build    # Build Docker image (~2 minutes)
+make results  # Run benchmark and extract results (~2-4 hours)
+```
 
-Recall    = True Positives / (True Positives + False Negatives)  
-          = 85,594 / 85,594 = 100.000%
+Results are extracted to:
+- `./comparison_results.json` — full per-binary, per-tool metrics
+- `./wunstrip_benchmark_table.tex` — LaTeX table for thesis integration
+- `./results/` — raw address files for each tool × binary
 
-Coverage  = Total Recovered / Total Functions
-          = 85,652 / 85,652 = 100.000%
-Multi-Method Recovery Framework
-Method 1: Exception Frame Analysis
-Primary technique leveraging mandatory .eh_frame sections (x86_64 ABI requirement):
+### Interactive Mode
 
-bash
-wunstrip -e /usr/sbin/binary -o binary.unstripped
-Coverage: 85,594/85,594 application functions (99.93% of total)
-Mechanism: Parses Frame Description Entries (FDEs) and Common Information Entries (CIEs)
-Deterministic: Zero false positives, 100% application function recall
-Method 2: Section Header Analysis
-Complementary technique for section boundary functions:
+```bash
+make run   # Drop into container shell
+bash /root/run_benchmark.sh   # Run benchmark manually
+```
 
-bash
-readelf -S binary | grep -E '\.init|\.fini'
-Coverage: 20 boundary functions across 10 test binaries
-Functions: _init (section start), _fini (section end)
-Deterministic: Direct ELF metadata provides exact addresses
-Method 3: Pattern Fingerprinting
-Supplementary technique for compiler runtime stubs:
+## Docker Image
 
-bash
-objgrep --pattern="__do_global_dtors_aux" binary
-Coverage: 38 compiler runtime functions
-Functions: __do_global_dtors_aux, register_tm_clones, deregister_tm_clones, frame_dummy
-Reliability: Stable signatures from crtbegin.o/crtend.o static linking
-Expected Output
-Small Binary (ls - 191 functions)
-[*] Testing /bin/ls
+The benchmark extends [`endrazine/wcc-tests-unstrip:latest`](https://hub.docker.com/r/endrazine/wcc-tests-unstrip) from DockerHub, which already contains:
 
--- Recovered functions: 185
--- Section recovered: 2  
--- Pattern recovered: 4
--- Total: 191/191 (100%)
+- Ubuntu 24.04 LTS base system
+- Witchcraft Compiler Collection (WCC) with `wunstrip`
+- All 10 test binaries pre-installed
+- Pre-computed debug symbols (`.dbg`) and wunstrip results (`.unstripped`)
 
-./false_positives.sh ls
-[no output - zero false positives]
+The benchmark Dockerfile adds:
+- **Ghidra 11.3.2** (headless analysis mode)
+- **radare2** (from Ubuntu repositories)
+- **angr** (Python virtual environment)
 
-./false_negatives.sh ls
-[no output - complete coverage]
-Large Binary (mysqld - 61,879 functions)
-[*] Testing /usr/sbin/mysqld
+## File Structure
 
--- Recovered functions: 61,873
--- Section recovered: 2
--- Pattern recovered: 4
--- Total: 61,879/61,879 (100%)
+```
+├── Dockerfile                  # Extends wcc-tests-unstrip with Ghidra, r2, angr
+├── Makefile                    # build / run / results / clean targets
+├── run_benchmark.sh            # Orchestrates all 4 tools on all 10 binaries
+├── ghidra_extract.py           # Ghidra Jython post-analysis script
+├── angr_extract.py             # angr CFGFast extraction script
+├── compare_tools.py            # Computes TP/FP/FN/P/R/F1, generates JSON + LaTeX
+├── comparison_results.json     # Full per-binary, per-tool metrics
+├── wunstrip_benchmark_table.tex # LaTeX table for thesis integration
+└── results/                    # Raw results per binary
+    └── <binary>/
+        ├── ground_truth.txt    # Ground truth addresses from debuginfod symbols
+        ├── wunstrip_addrs.txt  # Addresses recovered by wunstrip
+        ├── ghidra_addrs.txt    # Addresses recovered by Ghidra
+        ├── r2_addrs.txt        # Addresses recovered by radare2
+        ├── angr_addrs.txt      # Addresses recovered by angr
+        ├── ghidra.log          # Ghidra analysis log
+        ├── angr.log            # angr analysis log
+        └── r2_filter.log       # radare2 PLT filter log
+```
 
-./false_positives.sh mysqld
-[no output - zero false positives]
+The raw address files enable independent verification: each file contains one hexadecimal function address per line, sorted. The ELF binaries themselves (stripped, `.dbg`, `.unstripped`) are not included in the repository as they are available from the Docker image and Ubuntu repositories.
 
-./false_negatives.sh mysqld
-[no output - complete coverage]
-Address Aliasing (PostgreSQL example)
-[*] Testing /usr/lib/postgresql/16/bin/postgres
+## Citation
 
--- Recovered functions: 18,320
+If using this benchmark in academic research:
 
-./false_positives.sh postgres
-ERROR: 0000000000268d30 T function_parse_error_transpose: 0
-ERROR: 0000000000476850 T function_selectivity: 0
-Note: These "errors" demonstrate correct address-based validation. The .eh_frame parser correctly recovers address 0x268d30, but debug symbols show this address has multiple symbol names (weak symbols/function aliases). This validates our address-based (not name-based) methodology - we enumerate unique code locations, not symbol name variations.
-
-Validation Scripts
-False Positive Detection
-Verifies all recovered addresses exist in ground truth:
-
-bash
-#!/bin/bash
-nm ${binary}.unstripped -D | grep "T function" | while read input; do
-    offset=$(echo $input | awk '{print $1}')
-    found=$(nm ${binary}.dbg | grep $offset | wc -l)
-    if [ "$found" == "0" ]; then
-        echo "ERROR: Spurious detection at $offset"
-    fi
-done
-False Negative Detection
-Ensures all ground truth addresses were recovered:
-
-bash
-#!/bin/bash
-nm ${binary}.dbg | grep -w t | while read input; do
-    offset=$(echo $input | awk '{print $1}')
-    found=$(nm ${binary}.unstripped -D | grep $offset | wc -l)
-    if [ "$found" -lt "1" ]; then
-        echo "ERROR: Missed function at $offset"
-    fi
-done
-Thesis Claims Validation
-Chapter 4, Section 4.3.4 Claim:
-"Our parser extracts FDEs and CIEs to recover function addresses. Empirical validation across 85,594 application function addresses from Ubuntu 24.04 LTS production binaries demonstrates zero false positives (100% observed precision) and complete recovery (100% observed recall)."
-
-Validated Results:
-
-Precision: 100.000% (85,594/85,594) ✓
-Recall: 100.000% for application functions ✓
-Total Coverage: 100.000% via multi-method (85,652/85,652) ✓
-Statistical Confidence (Wilson score, 95% level):
-
-Precision: [99.996%, 100.000%]
-Recall: [99.996%, 100.000%]
-PSIRT Workflow Integration
-Three-Phase Deployment
-bash
-# Phase 1: Primary Recovery (99.93% coverage, <1s)
-wunstrip -e production.bin -o analyzed.bin
-
-# Phase 2: Section Supplement (deterministic)
-readelf -S production.bin | grep -E '\.init|\.fini'
-
-# Phase 3: Pattern Completion (100% total coverage)
-objgrep --pattern="__do_global_dtors_aux" production.bin
-Production Use Cases
-Container Security: Analyze stripped Docker images without source access
-IoT/Embedded: Function enumeration across diverse architectures
-Legacy Systems: Recover symbols from binaries without debug information
-Vulnerability Assessment: Rapid CVE triage under 24-hour regulatory deadlines
-Comparison with Existing Approaches
-Method	Precision	Coverage	Time	Deterministic
-.eh_frame (ours)	100%	99.93% app	<1s	Yes
-+ Section/Pattern	100%	100% total	<1s	Yes
-IDA Pro CFG	Variable	Path-dependent	Minutes	No
-Ghidra CFG	Variable	Heuristic-based	Minutes	No
-FLIRT Signatures	High	Name-based	Seconds	Partial
-Dynamic Instrumentation	100%	Runtime-limited	Varies	Yes
-Technical Details
-Address vs. Name Recovery
-This framework validates function address recovery (security-critical metric) rather than name recovery because:
-
-Security analysis: Requires code locations for vulnerability assessment
-WSH procedural debugging: Invokes functions by address, not name
-Symbol aliasing: Multiple names may reference identical addresses (weak symbols, inline functions)
-Attack surface: Enumeration depends on code locations, not symbol names
-Example (PostgreSQL weak symbol aliasing):
-
-bash
-# .eh_frame recovery (generic name)
-0x268d30 -> function_268d30
-
-# Debug symbols (multiple names for same address)
-0x268d30 -> function_parse_error_transpose (primary)
-0x268d30 -> [weak alias name] (secondary)
-
-# Both identify same code location - 100% address recovery ✓
-Scope and Limitations
-Validated Environments:
-
-Ubuntu 24.04 LTS (GCC 12.3.0) with standard compilation flags
-Distribution-standard binaries from package repositories
-Docker/container images based on major Linux distributions
-Stripped binaries following x86_64 System V ABI
-Requires Additional Validation:
-
-Custom toolchains with experimental optimization flags
-Heavily obfuscated or anti-analysis binaries
-Hand-crafted minimal ELF executables
-Non-standard or research compilers
-Reproducibility
-Complete Validation
-bash
-git clone https://github.com/endrazine/wcc-tests-wunstrip
-cd wcc-tests-wunstrip
-make clean
-make        # ~20 minutes
-make test   # ~3 hours
-Individual Binary Testing
-bash
-docker run -it wcc-wunstrip:latest bash
-cd testcases
-
-# Test specific binary
-./test_single.sh /usr/sbin/nginx
-
-# Run validation
-./false_positives.sh nginx
-./false_negatives.sh nginx
-Docker Environment
-Pre-configured environment includes:
-
-Witchcraft Compiler Collection (WCC) framework
-Ubuntu 24.04 LTS base system
-Debug symbol infrastructure (debuginfod client)
-Complete validation scripts and test corpus
-Troubleshooting
-Debuginfod Connection Issues
-bash
-export DEBUGINFOD_URLS="https://debuginfod.ubuntu.com"
-Memory Requirements
-Large binaries may require additional RAM:
-
-bash
-docker run -it --memory=8g wcc-wunstrip:latest
-Build-ID Verification
-Check binary integrity:
-
-bash
-wunstrip -d binary  # Verify build-id SHA1 matches
-Citation
-If using this framework in academic research:
-
-bibtex
-@INPROCEEDINGS{11141058,
-  author={Brossard, Jonathan},
-  booktitle={2025 International Conference on Emerging Technologies and Computing (IC_ETC)}, 
-  title={Unstripping Cloud Container ELF Binaries}, 
-  year={2025},
-  pages={1-6},
-  doi={10.1109/IC_ETC65981.2025.11141058}
+```bibtex
+@software{brossard2026wunstrip_benchmark,
+  author       = {Brossard, Jonathan},
+  title        = {Function Address Recovery Benchmark: wunstrip vs Ghidra vs radare2 vs angr},
+  year         = {2026},
+  publisher    = {Zenodo},
+  doi          = {10.5281/zenodo.24242625},
+  url          = {https://doi.org/10.5281/zenodo.24242625}
 }
+```
 
-Related Resources
-Main Framework: Witchcraft Compiler Collection
-Cross-Architecture: WCC Multi-Architecture Tests
-Binary Unlinking: WCC Unlinking Tests
-Thesis: Appendix D - Complete Methodology
+## Related Resources
 
-License:
+- [Witchcraft Compiler Collection](https://github.com/endrazine/wcc) — Main WCC framework
+- [wcc-tests-wunstrip](https://github.com/endrazine/wcc-tests-wunstrip) — wunstrip validation framework
+- [wcc-tests-unstrip DockerHub](https://hub.docker.com/r/endrazine/wcc-tests-unstrip) — Base Docker image
+
+## License
+
 Dual MIT/BSD License (consistent with WCC framework)
 
-Permanent Archive: https://doi.org/10.5281/zenodo.17186203
-
+Permanent Archive: https://doi.org/10.5281/zenodo.24242625
